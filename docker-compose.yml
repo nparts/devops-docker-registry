@@ -1,0 +1,160 @@
+version: '3'
+
+services:
+  registry:
+    image: registry:2
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefiknet"
+     # - "traefik.http.routers.registry.rule=Host(`registry.dops.tech`)"
+     # - "traefik.http.routers.registry.entrypoints=websecure"
+     # - "traefik.http.routers.registry.tls.certresolver=myresolver"
+     # - "traefik.http.routers.registry.middlewares=admin-auth" # Apply admin auth globally
+     # - "traefik.http.middlewares.admin-auth.basicauth.usersfile=/auth/admin.htpasswd"
+
+      # Group-specific middleware and routers
+      # Middleware for Group01
+      - "traefik.http.routers.registry-group01.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group01`)"
+      - "traefik.http.routers.registry-group01.middlewares=group01-auth" # Include admin-auth here to ensure admin access
+      - "traefik.http.routers.registry-group01.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group01.entrypoints=websecure"
+      - "traefik.http.middlewares.group01-auth.basicauth.usersfile=/auth/group01.htpasswd"
+      # Middleware for Group02
+      - "traefik.http.routers.registry-group02.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group02`)"
+      - "traefik.http.routers.registry-group02.middlewares=group02-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group02.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group02.entrypoints=websecure"
+      - "traefik.http.middlewares.group02-auth.basicauth.usersfile=/auth/group02.htpasswd"
+      # Middleware for Group03
+      - "traefik.http.routers.registry-group03.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group03`)"
+      - "traefik.http.routers.registry-group03.middlewares=group03-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group03.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group03.entrypoints=websecure"
+      - "traefik.http.middlewares.group03-auth.basicauth.usersfile=/auth/group03.htpasswd"
+      # Middleware for group04
+      - "traefik.http.routers.registry-group04.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group04`)"
+      - "traefik.http.routers.registry-group04.middlewares=group04-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group04.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group04.entrypoints=websecure"
+      - "traefik.http.middlewares.group04-auth.basicauth.usersfile=/auth/group04.htpasswd"
+      # Middleware for group05
+      - "traefik.http.routers.registry-group05.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group05`)"
+      - "traefik.http.routers.registry-group05.middlewares=group05-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group05.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group05.entrypoints=websecure"
+      - "traefik.http.middlewares.group05-auth.basicauth.usersfile=/auth/group05.htpasswd"
+      # Middleware for group06
+      - "traefik.http.routers.registry-group06.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group06`)"
+      - "traefik.http.routers.registry-group06.middlewares=group06-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group06.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group06.entrypoints=websecure"
+      - "traefik.http.middlewares.group06-auth.basicauth.usersfile=/auth/group06.htpasswd"
+      # Middleware for group07
+      - "traefik.http.routers.registry-group07.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group07`)"
+      - "traefik.http.routers.registry-group07.middlewares=group07-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group07.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group07.entrypoints=websecure"
+      - "traefik.http.middlewares.group07-auth.basicauth.usersfile=/auth/group07.htpasswd"
+      # Middleware for group08
+      - "traefik.http.routers.registry-group08.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group08`)"
+      - "traefik.http.routers.registry-group08.middlewares=group08-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group08.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group08.entrypoints=websecure"
+      - "traefik.http.middlewares.group08-auth.basicauth.usersfile=/auth/group08.htpasswd"
+      # Middleware for group09
+      - "traefik.http.routers.registry-group09.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group09`)"
+      - "traefik.http.routers.registry-group09.middlewares=group09-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group09.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group09.entrypoints=websecure"
+      - "traefik.http.middlewares.group09-auth.basicauth.usersfile=/auth/group09.htpasswd"
+      # Middleware for group10
+      - "traefik.http.routers.registry-group10.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group10`)"
+      - "traefik.http.routers.registry-group10.middlewares=group10-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group10.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group10.entrypoints=websecure"
+      - "traefik.http.middlewares.group10-auth.basicauth.usersfile=/auth/group10.htpasswd"
+      # Middleware for group11
+      - "traefik.http.routers.registry-group11.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group11`)"
+      - "traefik.http.routers.registry-group11.middlewares=group11-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group11.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group11.entrypoints=websecure"
+      - "traefik.http.middlewares.group11-auth.basicauth.usersfile=/auth/group11.htpasswd"
+      # Middleware for group12
+      - "traefik.http.routers.registry-group12.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group12`)"
+      - "traefik.http.routers.registry-group12.middlewares=group12-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group12.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group12.entrypoints=websecure"
+      - "traefik.http.middlewares.group12-auth.basicauth.usersfile=/auth/group12.htpasswd"
+      # Middleware for group13
+      - "traefik.http.routers.registry-group13.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group13`)"
+      - "traefik.http.routers.registry-group13.middlewares=group13-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group13.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group13.entrypoints=websecure"
+      - "traefik.http.middlewares.group13-auth.basicauth.usersfile=/auth/group13.htpasswd"
+      # Middleware for group14
+      - "traefik.http.routers.registry-group14.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group14`)"
+      - "traefik.http.routers.registry-group14.middlewares=group14-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group14.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group14.entrypoints=websecure"
+      - "traefik.http.middlewares.group14-auth.basicauth.usersfile=/auth/group14.htpasswd"
+      # Middleware for group15
+      - "traefik.http.routers.registry-group15.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group15`)"
+      - "traefik.http.routers.registry-group15.middlewares=group15-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group15.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group15.entrypoints=websecure"
+      - "traefik.http.middlewares.group15-auth.basicauth.usersfile=/auth/group15.htpasswd"
+      # Middleware for group16
+      - "traefik.http.routers.registry-group16.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group16`)"
+      - "traefik.http.routers.registry-group16.middlewares=group16-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group16.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group16.entrypoints=websecure"
+      - "traefik.http.middlewares.group16-auth.basicauth.usersfile=/auth/group16.htpasswd"
+      # Middleware for group17
+      - "traefik.http.routers.registry-group17.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group17`)"
+      - "traefik.http.routers.registry-group17.middlewares=group17-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group17.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group17.entrypoints=websecure"
+      - "traefik.http.middlewares.group17-auth.basicauth.usersfile=/auth/group17.htpasswd"
+      # Middleware for group18
+      - "traefik.http.routers.registry-group18.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group18`)"
+      - "traefik.http.routers.registry-group18.middlewares=group18-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group18.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group18.entrypoints=websecure"
+      - "traefik.http.middlewares.group18-auth.basicauth.usersfile=/auth/group18.htpasswd"
+      # Middleware for group19
+      - "traefik.http.routers.registry-group19.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group19`)"
+      - "traefik.http.routers.registry-group19.middlewares=group19-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group19.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group19.entrypoints=websecure"
+      - "traefik.http.middlewares.group19-auth.basicauth.usersfile=/auth/group19.htpasswd"
+      # Middleware for group20
+      - "traefik.http.routers.registry-group20.rule=Host(`registry.dops.tech`) && PathPrefix(`/v2/group20`)"
+      - "traefik.http.routers.registry-group20.middlewares=group20-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-group20.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-group20.entrypoints=websecure"
+      - "traefik.http.middlewares.group20-auth.basicauth.usersfile=/auth/group20.htpasswd"
+      
+      # Middleware login for global
+      - "traefik.http.routers.registry-login.rule=Host(`registry.dops.tech`) && Path(`/v2/`)"
+      - "traefik.http.routers.registry-login.middlewares=global-auth" # Include admin-auth here too
+      - "traefik.http.routers.registry-login.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry-login.entrypoints=websecure"
+      - "traefik.http.middlewares.global-auth.basicauth.usersfile=/auth/global.htpasswd"
+
+      # Middleware for admin
+      - "traefik.http.routers.registry.rule=Host(`registry.dops.tech`)"
+      - "traefik.http.routers.registry.entrypoints=websecure"
+      - "traefik.http.routers.registry.tls.certresolver=myresolver"
+      - "traefik.http.routers.registry.middlewares=admin-auth" # Apply admin auth globally
+      - "traefik.http.middlewares.admin-auth.basicauth.usersfile=/auth/admin.htpasswd"
+    environment:
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+    volumes:
+      - ./data:/data
+    networks:
+      - traefiknet
+
+networks:
+  traefiknet:
+    external: true
